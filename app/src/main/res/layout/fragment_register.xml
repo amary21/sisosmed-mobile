@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.register.RegisterFragment">
+
+    <TextView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_32dp"
+        android:layout_marginEnd="@dimen/value_70dp"
+        android:layout_marginTop="@dimen/value_70dp"
+        android:fontFamily="@font/prompt_medium"
+        android:gravity="start"
+        android:text="@string/msg_register"
+        android:textColor="@color/black"
+        android:textSize="@dimen/value_24sp"
+        android:lineSpacingExtra="@dimen/value_minus_8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_name"
+        style="@style/Theme.SiSosmed.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/value_32dp"
+        android:layout_marginTop="@dimen/value_70dp"
+        app:errorTextAppearance="@style/Theme.SiSosmed.ErrorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_name"
+            style="@style/Theme.SiSosmed.TextInputEditText"
+            android:digits="@string/regex_alphabet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_name"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_email"
+        style="@style/Theme.SiSosmed.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/value_32dp"
+        android:layout_marginTop="@dimen/value_16dp"
+        app:errorTextAppearance="@style/Theme.SiSosmed.ErrorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
+            style="@style/Theme.SiSosmed.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_email"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_password"
+        style="@style/Theme.SiSosmed.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/value_32dp"
+        android:layout_marginTop="@dimen/value_16dp"
+        app:endIconMode="password_toggle"
+        app:errorTextAppearance="@style/Theme.SiSosmed.ErrorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
+            style="@style/Theme.SiSosmed.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_primary"
+        android:layout_margin="@dimen/value_32dp"
+        android:text="@string/title_register"
+        android:fontFamily="@font/prompt_medium"
+        android:textSize="@dimen/value_16sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+
+    <TextView
+        android:id="@+id/btn_login_ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_sign_in_ask"
+        android:layout_marginTop="@dimen/value_24dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/value_14sp"
+        android:fontFamily="@font/prompt_medium"
+        app:layout_constraintStart_toStartOf="@+id/btn_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+</androidx.constraintlayout.widget.ConstraintLayout>
