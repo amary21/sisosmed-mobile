@@ -1,4 +1,4 @@
-package com.amary.sisosmed.ui.splash
+package com.amary.sisosmed.presentation.ui.splash
 
 import android.os.Bundle
 import android.view.View

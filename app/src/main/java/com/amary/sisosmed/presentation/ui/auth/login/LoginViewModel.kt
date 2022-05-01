@@ -1,4 +1,4 @@
-package com.amary.sisosmed.ui.login
+package com.amary.sisosmed.presentation.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 

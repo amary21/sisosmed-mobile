@@ -1,4 +1,4 @@
-package com.amary.sisosmed.ui.register
+package com.amary.sisosmed.presentation.ui.auth.register
 
 import android.os.Bundle
 import android.view.View

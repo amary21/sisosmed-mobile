@@ -1,4 +1,4 @@
-package com.amary.sisosmed.ui.setting
+package com.amary.sisosmed.presentation.ui.main.setting
 
 import android.os.Bundle
 import android.view.View
