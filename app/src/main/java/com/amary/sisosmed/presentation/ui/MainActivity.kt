@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_splash, R.id.navigation_login, R.id.navigation_register ->
                     binding.cvNavView.isVisible = false
+                else -> binding.cvNavView.isVisible = true
             }
         }
     }

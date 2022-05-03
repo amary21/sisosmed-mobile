@@ -23,9 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_name"
-        style="@style/Theme.SiSosmed.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
@@ -44,11 +43,10 @@
             android:hint="@string/title_name"
             android:inputType="textPersonName" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_email"
-        style="@style/Theme.SiSosmed.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
@@ -66,11 +64,10 @@
             android:hint="@string/title_email"
             android:inputType="textEmailAddress" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_password"
-        style="@style/Theme.SiSosmed.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
@@ -89,18 +86,16 @@
             android:hint="@string/title_password"
             android:inputType="textPassword" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
 
-    <Button
+    <com.amary.sisosmed.presentation.customview.CustomButton
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_button_primary"
         android:layout_margin="@dimen/value_32dp"
         android:text="@string/title_register"
+        android:enabled="false"
         android:fontFamily="@font/prompt_medium"
-        android:textSize="@dimen/value_16sp"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_password" />

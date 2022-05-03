@@ -9,6 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     
     <color name="nice_blue_100">#0082B4</color>
+    <color name="nice_blue_50">#800082B4</color>
     <color name="nice_blue_19">#300082B4</color>
     <color name="nice_blue_6">#0F0283B5</color>
+
+    <color name="danger">#DC3545</color>
+    <color name="success">#28A745</color>
 </resources>
