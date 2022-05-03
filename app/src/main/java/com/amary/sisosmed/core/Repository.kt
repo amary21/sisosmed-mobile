@@ -53,4 +53,6 @@ class Repository(
                 flow { emit(data.data.map { it.mapToModel() }) }
 
         }.asFlow()
+
+    override fun clearAuth() = prefDataStore.clear()
 }

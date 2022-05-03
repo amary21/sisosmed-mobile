@@ -10,6 +10,7 @@ import com.amary.sisosmed.domain.usecase.Interact
 import com.amary.sisosmed.domain.usecase.UseCase
 import com.amary.sisosmed.presentation.ui.auth.login.LoginViewModel
 import com.amary.sisosmed.presentation.ui.auth.register.RegisterViewModel
+import com.amary.sisosmed.presentation.ui.main.setting.SettingViewModel
 import com.amary.sisosmed.presentation.ui.splash.SplashViewModel
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -51,7 +52,7 @@ val networkModule = module {
 }
 
 val sessionModule = module {
-    single { PrefDataStore(androidContext()) }
+    single { PrefDataStore(androidContext(), get()) }
 }
 
 val repositoryModule = module {
@@ -68,4 +69,5 @@ val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { LoginViewModel(get()) }
+    viewModel { SettingViewModel(get()) }
 }

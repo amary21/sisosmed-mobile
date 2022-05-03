@@ -1,13 +1,10 @@
 package com.amary.sisosmed.presentation.ui.main.setting
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.amary.sisosmed.domain.usecase.UseCase
 
-class SettingViewModel : ViewModel() {
+class SettingViewModel(useCase: UseCase) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+    val logout = useCase.clearAuth().asLiveData()
 }

@@ -24,7 +24,6 @@ abstract class BaseRemoteSource(private val dispatcher: CoroutineDispatcher) {
                 emit(ApiResult.Error(responseCall.code(), responseError.message))
             }
         } catch (t: Throwable){
-            Log.e("getResult", t.message.toString())
             when (t) {
                 is HttpException ->
                     emit(ApiResult.Error(t.code(), t.message.toString()))

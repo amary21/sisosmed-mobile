@@ -1,6 +1,8 @@
 package com.amary.sisosmed.presentation.ui.splash
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.amary.sisosmed.R
@@ -13,15 +15,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     private val viewModel: SplashViewModel by viewModel()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        viewModel.checkAuthToken.observe(viewLifecycleOwner){
-            when(it){
-                is Resource.Loading -> {}
-                is Resource.Success -> findNavController().navigate(R.id.action_navigation_splash_to_navigation_home)
-                else -> {
-                    snackBar.make(false, it.message.toString()).show()
-                    findNavController().navigate(R.id.action_navigation_splash_to_navigation_login)
+        Handler(Looper.getMainLooper()).postDelayed({
+            viewModel.checkAuthToken.observe(viewLifecycleOwner){
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> findNavController().navigate(R.id.action_navigation_splash_to_navigation_home)
+                    else -> findNavController().navigate(R.id.action_navigation_splash_to_navigation_login)
                 }
             }
-        }
+        }, 1000)
     }
 }

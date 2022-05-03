@@ -23,4 +23,6 @@ interface UseCase {
         size: Int,
         location: Int
     ): Flow<Resource<List<Story>>>
+
+    fun clearAuth(): Flow<Boolean>
 }

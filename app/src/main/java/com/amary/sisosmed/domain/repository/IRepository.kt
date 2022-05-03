@@ -24,4 +24,6 @@ interface IRepository {
         size: Int,
         location: Int
     ): Flow<Resource<List<Story>>>
+
+    fun clearAuth(): Flow<Boolean>
 }
