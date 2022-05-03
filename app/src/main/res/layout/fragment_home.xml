@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_home"
     android:fitsSystemWindows="true"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".presentation.ui.main.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarTransaction"

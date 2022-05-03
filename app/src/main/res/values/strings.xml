@@ -107,6 +107,11 @@
     <string name="title_sign_in">Sign in</string>
     <string name="title_register_ask">Register?</string>
     <string name="msg_register">Enjoy access to the most interesting social media</string>
+    <string name="msg_error_name">Name must have at least 3 characters</string>
+    <string name="msg_error_pass">Password must have at least 6 characters</string>
+    <string name="msg_error_email">Invalid email address</string>
+    <string name="msg_login_success">Login Successfully</string>
+    <string name="msg_register_success">Register Successfully</string>
     <string name="title_sign_in_ask">Sign in?</string>
     <string name="title_register">Register</string>
     <string name="title_name">Name</string>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".presentation.ui.auth.login.LoginFragment">
 
     <TextView
         android:id="@+id/icon"
@@ -22,9 +22,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_email"
-        style="@style/Theme.SiSosmed.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
@@ -43,11 +42,10 @@
             android:hint="@string/title_email"
             android:inputType="textEmailAddress" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_password"
-        style="@style/Theme.SiSosmed.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
@@ -66,23 +64,22 @@
             android:hint="@string/title_password"
             android:inputType="textPassword" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
 
-    <Button
+    <com.amary.sisosmed.presentation.customview.CustomButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_button_primary"
         android:layout_margin="@dimen/value_32dp"
         android:text="@string/title_sign_in"
+        android:enabled="false"
         android:fontFamily="@font/prompt_medium"
-        android:textSize="@dimen/value_16sp"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_password" />
 
     <TextView
+        android:id="@+id/btn_register_ask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_register_ask"

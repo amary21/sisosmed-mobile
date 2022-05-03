@@ -1,0 +1,9 @@
+package com.amary.sisosmed.core
+
+sealed class Resource<T>(val data: T? = null, val codeMessage: String? = null, val message: String? = null) {
+    class Loading<T>(data: T? = null) : Resource<T>(data)
+    class Success<T>(data: T) : Resource<T>(data)
+    class Failed<T>(message: String): Resource<T>(data = null, message)
+    class Unauthorized<T>(message: String): Resource<T>(data = null, message)
+    class ServerError<T>(message: String): Resource<T>(data = null, message)
+}
