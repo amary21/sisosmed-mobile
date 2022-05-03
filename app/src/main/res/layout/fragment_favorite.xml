@@ -35,10 +35,12 @@
         android:layout_width="@dimen/value_40dp"
         android:layout_height="@dimen/value_40dp"
         android:layout_marginEnd="@dimen/value_36dp"
+        app:civ_border_color="?attr/colorPrimary"
+        app:civ_border_width="@dimen/value_2dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_hello"
-        android:src="@color/nice_blue_100"/>
+        android:src="@drawable/ic_profile"/>
 
     <TextView
         android:id="@+id/textView"
