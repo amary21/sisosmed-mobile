@@ -11,6 +11,7 @@ import com.amary.sisosmed.domain.usecase.Interact
 import com.amary.sisosmed.domain.usecase.UseCase
 import com.amary.sisosmed.presentation.ui.auth.login.LoginViewModel
 import com.amary.sisosmed.presentation.ui.auth.register.RegisterViewModel
+import com.amary.sisosmed.presentation.ui.main.detail.DetailViewModel
 import com.amary.sisosmed.presentation.ui.main.favorite.FavoriteViewModel
 import com.amary.sisosmed.presentation.ui.main.home.HomeViewModel
 import com.amary.sisosmed.presentation.ui.main.setting.SettingViewModel
@@ -75,4 +76,5 @@ val viewModelModule = module {
     viewModel { SettingViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }

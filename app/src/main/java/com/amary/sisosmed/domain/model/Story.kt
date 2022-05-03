@@ -1,6 +1,7 @@
 package com.amary.sisosmed.domain.model
 
 import com.amary.sisosmed.constant.EmptyValue
+import java.io.Serializable
 
 data class Story(
     val photoUrl: String = EmptyValue.STRING,
@@ -10,4 +11,4 @@ data class Story(
     val lon: Double = EmptyValue.DOUBLE,
     val id: String = EmptyValue.STRING,
     val lat: Double = EmptyValue.DOUBLE
-)
+): Serializable
