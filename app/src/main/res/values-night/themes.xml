@@ -19,8 +19,22 @@
 
     <style name="Theme.SiSosmed.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ErrorText" parent="TextAppearance.Design.Error">
+    <style name="Theme.SiSosmed.ErrorText" parent="TextAppearance.Design.Error">
         <item name="android:textColor">#FF0000</item>
         <item name="android:textSize">@dimen/value_12sp</item>
+    </style>
+
+    <style name="Theme.SiSosmed.TextInputLayout">
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="Theme.SiSosmed.TextInputEditText">
+        <item name="android:longClickable">false</item>
+        <item name="android:textSize">@dimen/value_16sp</item>
+        <item name="android:padding">@dimen/value_10dp</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_rounded</item>
     </style>
 </resources>
