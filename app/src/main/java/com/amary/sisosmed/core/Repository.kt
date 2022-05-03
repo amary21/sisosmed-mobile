@@ -94,5 +94,6 @@ class Repository(
         }.asFlow()
 
     override fun clearAuth() = prefDataStore.clear()
+
     override fun getUserName(): Flow<String> = prefDataStore.getName
 }

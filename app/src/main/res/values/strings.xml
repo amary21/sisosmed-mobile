@@ -6,6 +6,7 @@
     <string name="title_hello">hello,</string>
     <string name="title_icon_create_status">Icon Create Status</string>
     <string name="title_status">Status</string>
+    <string name="msg_no_connection">Connection not available</string>
 
     <string name="regex_alphabet">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
@@ -120,4 +121,5 @@
     <string name="title_sign_out">Sign out</string>
     <string name="title_login">Login</string>
     <string name="title_splash">Splash</string>
+    <string name="msg_not_found">Data Not Found</string>
 </resources>
