@@ -2,12 +2,13 @@ package com.amary.sisosmed.presentation.ui.main.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseFragment
+import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.databinding.FragmentHomeBinding
 import com.amary.sisosmed.presentation.adapter.PagerAdapter
@@ -17,7 +18,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private val viewModel: HomeViewModel by viewModel()
     private val adapter: PagerAdapter by lazy { PagerAdapter {
-        Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+        val bundle = bundleOf(KeyValue.BUNDLE_ITEM to it)
+        findNavController().navigate(R.id.action_navigation_home_to_navigation_detail, bundle)
     }}
 
     override fun initView(view: View, savedInstanceState: Bundle?) {

@@ -9,7 +9,6 @@ import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.amary.sisosmed.core.source.remote.response.StoryResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Query
 
 class RemoteSource(
     private val apiService: ApiService,
