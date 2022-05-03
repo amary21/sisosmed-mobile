@@ -37,7 +37,11 @@
             app:destination="@id/navigation_home" />
         <action
             android:id="@+id/action_navigation_login_to_navigation_register"
-            app:destination="@id/navigation_register" />
+            app:destination="@id/navigation_register"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
 
     <fragment
@@ -60,7 +64,11 @@
             app:destination="@id/navigation_login" />
         <action
             android:id="@+id/action_navigation_splash_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
 </navigation>

@@ -100,14 +100,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_password" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_login_ask"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_sign_in_ask"
         android:layout_marginTop="@dimen/value_24dp"
         android:textColor="@color/black"
         android:textSize="@dimen/value_14sp"
+        android:textAllCaps="false"
         android:fontFamily="@font/prompt_medium"
         app:layout_constraintStart_toStartOf="@+id/btn_register"
         app:layout_constraintTop_toBottomOf="@+id/btn_register" />

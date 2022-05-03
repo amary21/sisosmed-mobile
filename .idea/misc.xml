@@ -18,7 +18,7 @@
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.40625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home_content.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.18885869565217392" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.40625" />

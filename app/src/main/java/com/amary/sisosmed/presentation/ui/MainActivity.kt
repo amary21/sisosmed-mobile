@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.amary.sisosmed.R
+import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,6 +43,10 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when(navController.currentDestination?.id){
             R.id.navigation_login, R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_setting -> finish()
+            R.id.navigation_register -> {
+                navController.previousBackStackEntry?.savedStateHandle?.set(KeyValue.IS_FROM_REGISTER, true)
+                navController.popBackStack()
+            }
             else -> navController.popBackStack()
         }
     }

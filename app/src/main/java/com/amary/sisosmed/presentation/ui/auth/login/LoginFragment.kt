@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.transition.ChangeBounds
 import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseFragment
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.databinding.FragmentLoginBinding
-import com.amary.sisosmed.presentation.dialog.SnackBarCustom
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate), TextWatcher {
@@ -19,7 +17,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private val viewModel: LoginViewModel by viewModel()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
+        sharedElementEnterTransition = ChangeBounds().apply { duration = 750 }
+        playAnimation(binding.icon)
         binding.apply {
+            findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("isFromRegister")
+                ?.observe(viewLifecycleOwner){
+                    if (it){
+                        txtEmail.isErrorEnabled = false
+                        txtPassword.isErrorEnabled = false
+
+                        txtEmail.editText?.text?.clear()
+                        txtPassword.editText?.text?.clear()
+
+                        txtEmail.hint = getString(R.string.title_email)
+                        txtPassword.hint = getString(R.string.title_password)
+                    }
+                }
+
             txtEmail.editText?.addTextChangedListener(this@LoginFragment)
             txtPassword.editText?.addTextChangedListener(this@LoginFragment)
 

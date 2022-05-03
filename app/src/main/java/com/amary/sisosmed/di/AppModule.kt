@@ -1,6 +1,7 @@
 package com.amary.sisosmed.di
 
 import com.amary.sisosmed.BuildConfig
+import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.core.Repository
 import com.amary.sisosmed.core.source.remote.RemoteSource
 import com.amary.sisosmed.core.source.remote.network.ApiService
@@ -36,8 +37,8 @@ val networkModule = module {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(chuckedInterceptor)
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
+            .connectTimeout(KeyValue.TIME_NETWORK, TimeUnit.SECONDS)
+            .readTimeout(KeyValue.TIME_NETWORK, TimeUnit.SECONDS)
             .build()
     }
 
