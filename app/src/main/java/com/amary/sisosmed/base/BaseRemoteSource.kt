@@ -1,8 +1,6 @@
 package com.amary.sisosmed.base
 
-import android.util.Log
 import com.amary.sisosmed.core.source.remote.network.ApiResult
-import com.amary.sisosmed.core.source.remote.response.ApiResponse
 import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineDispatcher

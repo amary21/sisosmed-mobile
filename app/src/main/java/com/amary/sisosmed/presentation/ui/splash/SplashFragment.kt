@@ -21,11 +21,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             viewModel.checkAuthToken.observe(viewLifecycleOwner){
                 when(it){
                     is Resource.Loading -> {}
-                    is Resource.Success -> findNavController().navigate(R.id.action_navigation_splash_to_navigation_home)
-                    else -> {
+                    is Resource.Success -> if (it.data == true) findNavController().navigate(R.id.action_navigation_splash_to_navigation_home)
+                    is Resource.Unauthorized -> {
                         val extras = FragmentNavigatorExtras(binding.icApp to KeyValue.ICON_LOGIN)
                         findNavController().navigate(R.id.action_navigation_splash_to_navigation_login, null, null, extras)
                     }
+                    else -> snackBar.make(false, getString(R.string.msg_no_connection)).show()
                 }
             }
         }, KeyValue.TIME_PAUSE)

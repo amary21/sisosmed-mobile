@@ -1,13 +1,16 @@
 package com.amary.sisosmed.presentation.ui.main.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.cachedIn
+import com.amary.sisosmed.domain.usecase.UseCase
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val useCase: UseCase) : ViewModel() {
+    val userName = useCase.getUserName().asLiveData()
+    val logout = useCase.clearAuth().asLiveData()
+    fun allStories() = useCase.allStories().cachedIn(viewModelScope).asLiveData()
+    fun pagerResource(combinedLoadStates: CombinedLoadStates) = useCase.pagerResource(combinedLoadStates).asLiveData()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
 }

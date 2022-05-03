@@ -1,6 +1,5 @@
 package com.amary.sisosmed.base
 
-import android.util.Log
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.core.source.remote.network.ApiResult
 import kotlinx.coroutines.flow.*
