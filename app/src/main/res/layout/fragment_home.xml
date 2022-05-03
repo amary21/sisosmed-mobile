@@ -127,7 +127,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <include layout="@layout/fragment_home_content" />
+    <include
+        android:id="@+id/ly_content"
+        layout="@layout/fragment_home_content" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

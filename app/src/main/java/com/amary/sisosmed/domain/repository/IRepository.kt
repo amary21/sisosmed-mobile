@@ -1,5 +1,7 @@
 package com.amary.sisosmed.domain.repository
 
+import androidx.paging.CombinedLoadStates
+import androidx.paging.PagingData
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.domain.model.Login
 import com.amary.sisosmed.domain.model.Message
@@ -19,11 +21,13 @@ interface IRepository {
         password: String
     ):  Flow<Resource<Login>>
 
-    fun allStories(
-        page: Int,
-        size: Int,
-        location: Int
-    ): Flow<Resource<List<Story>>>
+    fun allStories(): Flow<PagingData<Story>>
+
+    fun pagerResource(loadState: CombinedLoadStates) : Flow<Resource<Unit>>
+
+    fun checkAuth(): Flow<Resource<Boolean>>
 
     fun clearAuth(): Flow<Boolean>
+
+    fun getUserName(): Flow<String>
 }
