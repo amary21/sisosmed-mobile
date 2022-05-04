@@ -19,6 +19,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding.apply {
+            playAnimation(icon)
             txtName.editText?.addTextChangedListener(this@RegisterFragment)
             txtEmail.editText?.addTextChangedListener(this@RegisterFragment)
             txtPassword.editText?.addTextChangedListener(this@RegisterFragment)
