@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_home"
     android:fitsSystemWindows="true"
-    tools:context=".presentation.ui.main.home.HomeFragment">
+    tools:context=".presentation.ui.main.home.HomeFragment"
+    tools:ignore="Overdraw">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarTransaction"
@@ -73,9 +74,10 @@
                         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_hello"
-                        android:src="@color/nice_blue_100"/>
+                        android:src="@drawable/ic_profile"/>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/value_8dp"
@@ -127,7 +129,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <include layout="@layout/fragment_home_content" />
+    <include
+        android:id="@+id/ly_content"
+        layout="@layout/fragment_home_content" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,13 +1,10 @@
 package com.amary.sisosmed.presentation.ui.main.favorite
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.amary.sisosmed.domain.usecase.UseCase
 
-class FavoriteViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+class FavoriteViewModel(useCase: UseCase) : ViewModel() {
+    val userName = useCase.getUserName().asLiveData()
+    val allFavoriteStories = useCase.allFavoriteStories().asLiveData()
 }

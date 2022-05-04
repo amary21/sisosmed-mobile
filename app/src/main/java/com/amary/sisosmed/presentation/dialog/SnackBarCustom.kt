@@ -1,7 +1,6 @@
 package com.amary.sisosmed.presentation.dialog
 
 import android.app.Activity
-import android.view.View
 import androidx.core.content.ContextCompat
 import com.amary.sisosmed.R
 import com.google.android.material.snackbar.Snackbar

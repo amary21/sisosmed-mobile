@@ -1,5 +1,6 @@
 package com.amary.sisosmed.base
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,16 +29,21 @@ abstract class BaseFragment<VB: ViewBinding>(
 
     abstract fun initView(view: View, savedInstanceState: Bundle?)
 
-    open fun observeLiveData() = Unit
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view, savedInstanceState)
-        observeLiveData()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    protected fun playAnimation(view: View) {
+        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
     }
 }

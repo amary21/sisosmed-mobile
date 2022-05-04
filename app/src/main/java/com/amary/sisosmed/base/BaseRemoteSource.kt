@@ -1,8 +1,6 @@
 package com.amary.sisosmed.base
 
-import android.util.Log
 import com.amary.sisosmed.core.source.remote.network.ApiResult
-import com.amary.sisosmed.core.source.remote.response.ApiResponse
 import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,7 +22,6 @@ abstract class BaseRemoteSource(private val dispatcher: CoroutineDispatcher) {
                 emit(ApiResult.Error(responseCall.code(), responseError.message))
             }
         } catch (t: Throwable){
-            Log.e("getResult", t.message.toString())
             when (t) {
                 is HttpException ->
                     emit(ApiResult.Error(t.code(), t.message.toString()))

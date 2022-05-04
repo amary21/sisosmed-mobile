@@ -7,6 +7,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseFragment
+import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.databinding.FragmentRegisterBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,9 +23,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             txtEmail.editText?.addTextChangedListener(this@RegisterFragment)
             txtPassword.editText?.addTextChangedListener(this@RegisterFragment)
 
-            btnLoginAsk.setOnClickListener {
-                findNavController().navigate(R.id.action_navigation_register_to_navigation_login)
-            }
+            btnLoginAsk.setOnClickListener { navigateToLogin() }
 
             btnRegister.setOnClickListener {
                 progressDialog.show()
@@ -38,7 +37,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         is Resource.Success -> {
                             progressDialog.dismiss()
                             snackBar.make(true, getString(R.string.msg_register_success)).show()
-                            findNavController().navigate(R.id.action_navigation_register_to_navigation_login)
+                            navigateToLogin()
                         }
                         else -> {
                             progressDialog.dismiss()
@@ -60,4 +59,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         }
     }
 
+    private fun navigateToLogin(){
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(KeyValue.IS_FROM_REGISTER, true)
+        findNavController().popBackStack()
+    }
 }

@@ -17,6 +17,7 @@
         android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/value_40sp"
         android:layout_marginTop="@dimen/value_120dp"
+        android:transitionName="icon_login"
         app:drawableStartCompat="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,14 +79,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_password" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_register_ask"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_register_ask"
         android:layout_marginTop="@dimen/value_24dp"
         android:textColor="@color/black"
         android:textSize="@dimen/value_14sp"
+        android:textAllCaps="false"
         android:fontFamily="@font/prompt_medium"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />

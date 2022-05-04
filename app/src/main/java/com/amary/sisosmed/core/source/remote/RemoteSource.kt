@@ -9,7 +9,12 @@ import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.amary.sisosmed.core.source.remote.response.StoryResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Query
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class RemoteSource(
     private val apiService: ApiService,
@@ -23,4 +28,11 @@ class RemoteSource(
 
     suspend fun allStories(token: String, page: Int, size: Int, location: Int): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
         getResult { apiService.allStories("Bearer $token", page, size, location) }
+
+    suspend fun post(token: String, file: File, description: String): Flow<ApiResult<MessageResponse>> {
+        val partDes = description.toRequestBody("text/plain".toMediaType())
+        val reqFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val partImage = MultipartBody.Part.createFormData("photo", file.name, reqFile)
+        return getResult { apiService.post("Bearer $token", partImage, partDes) }
+    }
 }
