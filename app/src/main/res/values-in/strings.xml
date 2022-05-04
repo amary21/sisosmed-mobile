@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">SiSosmed</string>
+
+    <string name="msg_camera_denied">Izin Kamera ditolak</string>
+    <string name="msg_camera_granted">Izin Kamera diberikan</string>
+    <string name="msg_error_email">Alamat email salah</string>
+    <string name="msg_error_name">Nama harus memiliki minimal 3 karakter</string>
+    <string name="msg_error_pass">Kata sandi harus memiliki minimal 6 karakter</string>
+    <string name="msg_favorite">Postingan favorit kamu</string>
+    <string name="msg_login_success">Login Berhasil</string>
+    <string name="msg_no_connection">Koneksi tidak tersedia</string>
+    <string name="msg_not_found">Data Tidak Ditemukan</string>
+    <string name="msg_post_success">Posting Berhasil</string>
+    <string name="msg_register">Nikmati akses ke media sosial paling menarik</string>
+    <string name="msg_register_success">Daftar Berhasil</string>
+    <string name="msg_restart_app">Mulai ulang aplikasi untuk mengaktifkan perubahan pengaturan</string>
+
+    <string name="regex_alphabet">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <string name="title_camera">Kamera</string>
+    <string name="title_default">Bawaan</string>
+    <string name="title_detail">Detail</string>
+    <string name="title_email">Email</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_gallery">Galeri</string>
+    <string name="title_hello">halo,</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_icon_create_status">Icon Buat Status</string>
+    <string name="title_image_list_home">daftar gambar beranda</string>
+    <string name="title_later">Nanti</string>
+    <string name="title_localization">Lokalisasi</string>
+    <string name="title_login">Masuk</string>
+    <string name="title_name">Nama</string>
+    <string name="title_password">Sandi</string>
+    <string name="title_place_holder">tempat penampung</string>
+    <string name="title_post">Post</string>
+    <string name="title_register">Daftar</string>
+    <string name="title_register_ask">Daftar?</string>
+    <string name="title_restart">Muat Ulang Sekarang</string>
+    <string name="title_restart_app">Mulai Ulang Aplikasi?</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_sign_in">Masuk</string>
+    <string name="title_sign_in_ask">Masuk?</string>
+    <string name="title_sign_out">Keluar</string>
+    <string name="title_splash">Splash</string>
+</resources>

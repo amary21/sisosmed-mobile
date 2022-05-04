@@ -34,4 +34,19 @@ class PrefDataStore(context: Context, private val dispatcher: CoroutineDispatche
             if (it != EmptyValue.STRING) emit(true) else emit(false)
         }
     }.flowOn(dispatcher)
+
+    suspend fun setLocal(local: String){
+        dataStore.edit { it[DataStore.KEY_LOCAL] = local }
+    }
+
+    val getLocal: Flow<String> = dataStore.data
+        .map {
+            (if (it[DataStore.KEY_LOCAL] != null){
+                it[DataStore.KEY_LOCAL]
+            } else {
+                val default = EmptyValue.STRING
+                setLocal(default)
+                default
+            }).toString()
+        }
 }

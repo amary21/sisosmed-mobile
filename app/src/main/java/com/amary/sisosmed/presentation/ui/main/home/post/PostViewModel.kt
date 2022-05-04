@@ -1,4 +1,4 @@
-package com.amary.sisosmed.presentation.ui.main.post
+package com.amary.sisosmed.presentation.ui.main.home.post
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

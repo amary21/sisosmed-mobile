@@ -16,6 +16,8 @@ import java.util.*
 class DetailFragment: BaseBottomSheet<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
     private val viewModel: DetailViewModel by viewModel()
 
+    override fun setExpandLayout() = true
+
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding.apply {
             val story = arguments?.getSerializable(KeyValue.BUNDLE_ITEM) as Story

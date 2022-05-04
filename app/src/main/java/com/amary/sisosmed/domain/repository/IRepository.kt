@@ -3,6 +3,7 @@ package com.amary.sisosmed.domain.repository
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import com.amary.sisosmed.core.Resource
+import com.amary.sisosmed.domain.model.Localization
 import com.amary.sisosmed.domain.model.Login
 import com.amary.sisosmed.domain.model.Message
 import com.amary.sisosmed.domain.model.Story
@@ -21,4 +22,7 @@ interface IRepository {
     fun isFavorite(storyId: String): Flow<Boolean>
     fun setFavorite(story: Story): Flow<Boolean>
     fun post(file: File, description: String): Flow<Resource<Message>>
+    fun allLocalization(): Flow<List<Localization>>
+    fun setLocal(local: String): Flow<String>
+    fun getLocal(): Flow<String>
 }

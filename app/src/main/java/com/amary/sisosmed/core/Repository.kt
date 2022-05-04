@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.amary.sisosmed.base.BasePagingSource
 import com.amary.sisosmed.base.BaseRepository
+import com.amary.sisosmed.constant.EmptyValue
 import com.amary.sisosmed.core.source.local.LocalSource
 import com.amary.sisosmed.core.source.remote.RemoteSource
 import com.amary.sisosmed.core.source.remote.network.ApiResult
@@ -14,6 +15,7 @@ import com.amary.sisosmed.core.source.remote.response.LoginResponse
 import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.amary.sisosmed.core.source.remote.response.StoryResponse
 import com.amary.sisosmed.core.source.session.PrefDataStore
+import com.amary.sisosmed.domain.model.Localization
 import com.amary.sisosmed.domain.model.Login
 import com.amary.sisosmed.domain.model.Message
 import com.amary.sisosmed.domain.model.Story
@@ -129,5 +131,21 @@ class Repository(
             override fun mapData(data: MessageResponse): Flow<Message> =
                 flow { emit(data.mapToModel()) }
         }.asFlow()
+
+    override fun allLocalization(): Flow<List<Localization>> = flow {
+        val data = arrayListOf(
+            Localization("Default", EmptyValue.STRING),
+            Localization("English", "en"),
+            Localization("Indonesia", "in")
+        )
+        emit(data)
+    }
+
+    override fun setLocal(local: String): Flow<String> = flow {
+        prefDataStore.setLocal(local)
+        emit(prefDataStore.getLocal.first())
+    }
+
+    override fun getLocal(): Flow<String> = prefDataStore.getLocal
 
 }

@@ -28,6 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_32dp"
         android:layout_marginTop="@dimen/value_32dp"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
         app:endIconMode="custom"
         app:endIconDrawable="@drawable/ic_arrow_down"
         app:errorTextAppearance="@style/Theme.SiSosmed.ErrorText"
@@ -40,9 +42,9 @@
             style="@style/Theme.SiSosmed.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title_setting"
-            android:focusable="false"
-            android:inputType="textPassword" />
+            android:text="@string/title_default"
+            android:focusableInTouchMode="false"
+            android:focusable="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -31,7 +31,7 @@ open class BasePagingSource<T: Any>(
                     )
                 }
                 is ApiResult.Error -> {
-                    val responseBody = "$${result.codeError} - ${result.errorMessage}"
+                    val responseBody = "${result.codeError} - ${result.errorMessage}"
                     throw Exception(responseBody)
                 }
             }

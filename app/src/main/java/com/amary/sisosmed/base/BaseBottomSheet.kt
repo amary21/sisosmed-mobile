@@ -22,17 +22,21 @@ abstract class BaseBottomSheet<VB: ViewBinding>(
     protected val snackBar: SnackBarCustom by lazy { SnackBarCustom(requireActivity()) }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheet = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        bottomSheet.setOnShowListener {
-            val dialog = it as BottomSheetDialog
-            val dialogView = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as View
-            val dialogBehaviour = BottomSheetBehavior.from(dialogView)
-            val layoutParams = dialogView.layoutParams
-            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-            dialogView.layoutParams = layoutParams
-            dialogBehaviour.state = BottomSheetBehavior.STATE_EXPANDED
+        if (setExpandLayout()){
+            val bottomSheet = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+            bottomSheet.setOnShowListener {
+                val dialog = it as BottomSheetDialog
+                val dialogView = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as View
+                val dialogBehaviour = BottomSheetBehavior.from(dialogView)
+                val layoutParams = dialogView.layoutParams
+                layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+                dialogView.layoutParams = layoutParams
+                dialogBehaviour.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            return bottomSheet
         }
-        return bottomSheet
+
+        return super.onCreateDialog(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -45,6 +49,8 @@ abstract class BaseBottomSheet<VB: ViewBinding>(
     }
 
     abstract fun initView(view: View, savedInstanceState: Bundle?)
+
+    abstract fun setExpandLayout(): Boolean
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

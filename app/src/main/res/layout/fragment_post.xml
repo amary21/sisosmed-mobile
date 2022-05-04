@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.main.post.PostFragment">
+    tools:context=".presentation.ui.main.home.post.PostFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -33,12 +33,23 @@
         android:layout_height="@dimen/value_250dp"
         android:layout_margin="@dimen/value_16dp"
         android:adjustViewBounds="true"
-        android:elevation="@dimen/value_2dp"
-        android:background="?attr/colorOnPrimary"
+        android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:shapeAppearance="@style/RoundedShape.Post"/>
+
+    <ImageView
+        android:id="@+id/place_holder"
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="@dimen/value_0dp"
+        android:padding="@dimen/value_24dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/img_preview"
+        app:layout_constraintEnd_toEndOf="@+id/img_preview"
+        app:layout_constraintStart_toStartOf="@+id/img_preview"
+        app:layout_constraintTop_toTopOf="@+id/img_preview"
+        android:contentDescription="@string/title_place_holder" />
 
     <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
         android:id="@+id/txt_post"

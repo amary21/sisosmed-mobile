@@ -1,4 +1,4 @@
-package com.amary.sisosmed.presentation.ui.main.post
+package com.amary.sisosmed.presentation.ui.main.home.post
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseBottomSheet
@@ -39,6 +40,7 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             val myFile = File(currentPhotoPath)
             val result = rotateBitmap(BitmapFactory.decodeFile(myFile.path), true)
             viewModel.setImgBitmap(myFile)
+            binding.placeHolder.isVisible = false
             binding.imgPreview.setImageBitmap(result)
         }
     }
@@ -49,6 +51,7 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             val myFile = uriToFile(selectedImg, requireActivity())
             val result = BitmapFactory.decodeFile(myFile.path)
             viewModel.setImgBitmap(myFile)
+            binding.placeHolder.isVisible = false
             binding.imgPreview.setImageBitmap(result)
         }
     }
@@ -62,6 +65,8 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             }
         }
     }
+
+    override fun setExpandLayout() = true
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         checkForm()

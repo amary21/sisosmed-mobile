@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_navigation_setting_to_navigation_login"
             app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_setting_to_navigation_localization"
+            app:destination="@id/navigation_localization" />
     </fragment>
 
     <fragment
@@ -90,8 +93,13 @@
 
     <dialog
         android:id="@+id/navigation_post"
-        android:name="com.amary.sisosmed.presentation.ui.main.post.PostFragment"
+        android:name="com.amary.sisosmed.presentation.ui.main.home.post.PostFragment"
         android:label="@string/title_post"
         tools:layout="@layout/fragment_post" />
+    <dialog
+        android:id="@+id/navigation_localization"
+        android:name="com.amary.sisosmed.presentation.ui.main.setting.localization.LocalizationFragment"
+        android:label="@string/title_localization"
+        tools:layout="@layout/fragment_localization" />
 
 </navigation>

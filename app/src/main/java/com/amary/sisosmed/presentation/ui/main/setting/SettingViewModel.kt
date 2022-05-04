@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import com.amary.sisosmed.domain.usecase.UseCase
 
 class SettingViewModel(useCase: UseCase) : ViewModel() {
-
     val logout = useCase.clearAuth().asLiveData()
+    val getLocal = useCase.getLocal().asLiveData()
+    val allLocal = useCase.allLocalization().asLiveData()
 }
