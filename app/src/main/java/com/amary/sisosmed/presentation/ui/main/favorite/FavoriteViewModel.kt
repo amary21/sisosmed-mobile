@@ -6,4 +6,5 @@ import com.amary.sisosmed.domain.usecase.UseCase
 
 class FavoriteViewModel(useCase: UseCase) : ViewModel() {
     val userName = useCase.getUserName().asLiveData()
+    val allFavoriteStories = useCase.allFavoriteStories().asLiveData()
 }

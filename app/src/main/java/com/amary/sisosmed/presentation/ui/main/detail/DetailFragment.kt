@@ -2,6 +2,8 @@ package com.amary.sisosmed.presentation.ui.main.detail
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
+import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseBottomSheet
 import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.databinding.FragmentDetailBinding
@@ -19,7 +21,31 @@ class DetailFragment: BaseBottomSheet<FragmentDetailBinding>(FragmentDetailBindi
             val story = arguments?.getSerializable(KeyValue.BUNDLE_ITEM) as Story
 
             toolbar.title = story.name
-            toolbar.setNavigationOnClickListener { dismiss() }
+            toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+            toolbar.inflateMenu(R.menu.toolbar_menu)
+            toolbar.setOnMenuItemClickListener { menuItem ->
+                if (menuItem.itemId == R.id.toolbar_favorite){
+                    viewModel.setFavorite(story).observe(viewLifecycleOwner){
+                        if (it){
+                            menuItem.setIcon(R.drawable.ic_favorite)
+                        } else {
+                            menuItem.setIcon(R.drawable.ic_favorite_border)
+                        }
+                    }
+                }
+
+                return@setOnMenuItemClickListener false
+            }
+
+
+            viewModel.isFavorite(story.id).observe(viewLifecycleOwner){
+                val menuFavorite = toolbar.menu.findItem(R.id.toolbar_favorite)
+                if (it){
+                    menuFavorite.setIcon(R.drawable.ic_favorite)
+                } else {
+                    menuFavorite.setIcon(R.drawable.ic_favorite_border)
+                }
+            }
 
             tvCreated.text = convertDate(story.createdAt)
             tvDescription.text = story.description

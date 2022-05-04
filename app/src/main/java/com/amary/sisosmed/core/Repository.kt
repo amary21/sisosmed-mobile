@@ -1,11 +1,14 @@
 package com.amary.sisosmed.core
 
+import android.util.Log
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.amary.sisosmed.base.BasePagingSource
 import com.amary.sisosmed.base.BaseRepository
+import com.amary.sisosmed.core.source.local.LocalSource
+import com.amary.sisosmed.core.source.local.entity.mapToModel
 import com.amary.sisosmed.core.source.remote.RemoteSource
 import com.amary.sisosmed.core.source.remote.network.ApiResult
 import com.amary.sisosmed.core.source.remote.response.ApiResponse
@@ -17,13 +20,11 @@ import com.amary.sisosmed.domain.model.Login
 import com.amary.sisosmed.domain.model.Message
 import com.amary.sisosmed.domain.model.Story
 import com.amary.sisosmed.domain.repository.IRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 class Repository(
     private val remoteSource: RemoteSource,
+    private val localSource: LocalSource,
     private val prefDataStore: PrefDataStore
 ) : IRepository {
 
@@ -96,4 +97,29 @@ class Repository(
     override fun clearAuth() = prefDataStore.clear()
 
     override fun getUserName(): Flow<String> = prefDataStore.getName
+
+    override fun allFavoriteStories(): Flow<List<Story>> = flow {
+        localSource.allFavoriteStories().collect { result ->
+            emit(result.map { it.mapToModel() })
+        }
+    }
+
+    override fun isFavorite(storyId: String): Flow<Boolean> = flow {
+        val result = localSource.isFavorite(storyId).first()
+        if (result == 0){
+            emit(false)
+        } else {
+            emit(true)
+        }
+    }
+
+    override fun setFavorite(story: Story): Flow<Boolean> = flow {
+        val result = isFavorite(story.id).first()
+        if (result){
+            localSource.unSetFavorite(story.id)
+        } else {
+            localSource.setFavorite(story.mapToEntity())
+        }
+        emit(!result)
+    }
 }

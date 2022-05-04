@@ -1,7 +1,9 @@
 package com.amary.sisosmed.domain.usecase
 
 import androidx.paging.CombinedLoadStates
+import com.amary.sisosmed.domain.model.Story
 import com.amary.sisosmed.domain.repository.IRepository
+import kotlinx.coroutines.flow.Flow
 
 class Interact(private val iRepository: IRepository): UseCase {
     override fun register(name: String, email: String, password: String) = iRepository.register(name, email, password)
@@ -11,4 +13,7 @@ class Interact(private val iRepository: IRepository): UseCase {
     override fun checkAuth() = iRepository.checkAuth()
     override fun clearAuth() = iRepository.clearAuth()
     override fun getUserName() = iRepository.getUserName()
+    override fun allFavoriteStories() = iRepository.allFavoriteStories()
+    override fun isFavorite(storyId: String) = iRepository.isFavorite(storyId)
+    override fun setFavorite(story: Story) = iRepository.setFavorite(story)
 }

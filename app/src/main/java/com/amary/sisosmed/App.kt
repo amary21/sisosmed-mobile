@@ -18,6 +18,7 @@ class App : Application() {
             modules(
                 listOf(
                     networkModule,
+                    databaseModule,
                     sessionModule,
                     repositoryModule,
                     useCaseModule,
