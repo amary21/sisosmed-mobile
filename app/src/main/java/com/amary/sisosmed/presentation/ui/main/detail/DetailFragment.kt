@@ -22,7 +22,7 @@ class DetailFragment: BaseBottomSheet<FragmentDetailBinding>(FragmentDetailBindi
 
             toolbar.title = story.name
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
-            toolbar.inflateMenu(R.menu.toolbar_menu)
+            toolbar.inflateMenu(R.menu.favorite_menu)
             toolbar.setOnMenuItemClickListener { menuItem ->
                 if (menuItem.itemId == R.id.toolbar_favorite){
                     viewModel.setFavorite(story).observe(viewLifecycleOwner){

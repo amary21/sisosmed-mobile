@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
 import androidx.viewbinding.ViewBinding
 import com.amary.sisosmed.presentation.dialog.ProgressDialog
 import com.amary.sisosmed.presentation.dialog.SnackBarCustom

@@ -24,6 +24,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding.apply {
+            btnPost.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_home_to_navigation_post)
+            }
+
             viewModel.userName.observe(viewLifecycleOwner){
                 tvName.text = it
             }

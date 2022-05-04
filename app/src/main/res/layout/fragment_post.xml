@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.main.post.PostFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/value_8dp"
+        android:elevation="@dimen/value_2dp"
+        app:cardCornerRadius="@dimen/value_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/title_post" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_preview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/value_250dp"
+        android:layout_margin="@dimen/value_16dp"
+        android:adjustViewBounds="true"
+        android:elevation="@dimen/value_2dp"
+        android:background="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:shapeAppearance="@style/RoundedShape.Post"/>
+
+    <com.amary.sisosmed.presentation.customview.CustomTextInputLayout
+        android:id="@+id/txt_post"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/value_0dp"
+        android:layout_margin="@dimen/value_16dp"
+        app:errorTextAppearance="@style/Theme.SiSosmed.ErrorText"
+        app:layout_constraintBottom_toTopOf="@+id/btn_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_preview">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_post"
+            style="@style/Theme.SiSosmed.TextInputEditText"
+            android:background="@drawable/bg_textarea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/title_post"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:lines="6"/>
+
+    </com.amary.sisosmed.presentation.customview.CustomTextInputLayout>
+
+    <com.amary.sisosmed.presentation.customview.CustomButton
+        android:id="@+id/btn_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/value_16dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:enabled="false"
+        android:fontFamily="@font/prompt_medium"
+        android:text="@string/title_post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

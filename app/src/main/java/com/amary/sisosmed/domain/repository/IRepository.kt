@@ -7,6 +7,7 @@ import com.amary.sisosmed.domain.model.Login
 import com.amary.sisosmed.domain.model.Message
 import com.amary.sisosmed.domain.model.Story
 import kotlinx.coroutines.flow.Flow
+import java.io.File
 
 interface IRepository {
     fun register(name: String, email: String, password: String): Flow<Resource<Message>>
@@ -19,4 +20,5 @@ interface IRepository {
     fun allFavoriteStories(): Flow<List<Story>>
     fun isFavorite(storyId: String): Flow<Boolean>
     fun setFavorite(story: Story): Flow<Boolean>
+    fun post(file: File, description: String): Flow<Resource<Message>>
 }

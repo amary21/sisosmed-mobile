@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_detail"
             app:destination="@id/navigation_detail" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_post"
+            app:destination="@id/navigation_post" />
     </fragment>
 
     <fragment
@@ -84,5 +87,11 @@
         android:name="com.amary.sisosmed.presentation.ui.main.detail.DetailFragment"
         android:label="@string/title_detail"
         tools:layout="@layout/fragment_detail" />
+
+    <dialog
+        android:id="@+id/navigation_post"
+        android:name="com.amary.sisosmed.presentation.ui.main.post.PostFragment"
+        android:label="@string/title_post"
+        tools:layout="@layout/fragment_post" />
 
 </navigation>

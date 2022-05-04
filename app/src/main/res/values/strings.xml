@@ -6,12 +6,10 @@
     <string name="msg_no_connection">Connection not available</string>
 
     <string name="regex_alphabet">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="template_address">%1$s, %2$s</string>
 
     <string name="title_favorite">Favorite</string>
     <string name="title_setting">Setting</string>
     <string name="title_image_list_home">image list home</string>
-    <string name="title_icon_favorite">icon favorite</string>
     <string name="title_email">Email</string>
     <string name="title_password">Password</string>
     <string name="title_sign_in">Sign in</string>
@@ -32,4 +30,9 @@
     <string name="title_splash">Splash</string>
     <string name="msg_not_found">Data Not Found</string>
     <string name="title_detail">Detail</string>
+    <string name="title_camera">Camera</string>
+    <string name="title_gallery">Gallery</string>
+    <string name="msg_camera_granted">Camera Permission is granted</string>
+    <string name="msg_camera_denied">Camera Permission is denied</string>
+    <string name="msg_post_success">Posting Successfully</string>
 </resources>

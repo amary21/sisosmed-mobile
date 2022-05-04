@@ -28,11 +28,10 @@ class PrefDataStore(context: Context, private val dispatcher: CoroutineDispatche
     val getToken: Flow<String> = dataStore.data
         .map { it[DataStore.KEY_TOKEN] ?: EmptyValue.STRING }
 
-    fun clear(): Flow<Boolean> = flow {
-        dataStore.edit { it.clear() }
-        if (getToken.first() != EmptyValue.STRING)
-            emit(true)
-        else
-            emit(false)
+    fun clearAuth(): Flow<Boolean> = flow {
+        dataStore.edit { it.remove(DataStore.KEY_TOKEN) }
+        getToken.collect {
+            if (it != EmptyValue.STRING) emit(true) else emit(false)
+        }
     }.flowOn(dispatcher)
 }

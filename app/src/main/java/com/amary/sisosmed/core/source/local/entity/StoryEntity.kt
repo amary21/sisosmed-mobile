@@ -30,5 +30,3 @@ data class StoryEntity (
     )
 }
 
-fun List<StoryEntity>.mapToModel() = map { it.mapToModel() }
-

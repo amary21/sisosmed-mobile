@@ -1,6 +1,5 @@
 package com.amary.sisosmed.core
 
-import android.util.Log
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -8,7 +7,6 @@ import androidx.paging.map
 import com.amary.sisosmed.base.BasePagingSource
 import com.amary.sisosmed.base.BaseRepository
 import com.amary.sisosmed.core.source.local.LocalSource
-import com.amary.sisosmed.core.source.local.entity.mapToModel
 import com.amary.sisosmed.core.source.remote.RemoteSource
 import com.amary.sisosmed.core.source.remote.network.ApiResult
 import com.amary.sisosmed.core.source.remote.response.ApiResponse
@@ -21,6 +19,7 @@ import com.amary.sisosmed.domain.model.Message
 import com.amary.sisosmed.domain.model.Story
 import com.amary.sisosmed.domain.repository.IRepository
 import kotlinx.coroutines.flow.*
+import java.io.File
 
 class Repository(
     private val remoteSource: RemoteSource,
@@ -29,16 +28,16 @@ class Repository(
 ) : IRepository {
 
     override fun register(name: String, email: String, password: String): Flow<Resource<Message>> =
-        object : BaseRepository<Message, MessageResponse>(){
-            override suspend fun createCall(): Flow<ApiResult<MessageResponse>>  =
+        object : BaseRepository<Message, MessageResponse>() {
+            override suspend fun createCall(): Flow<ApiResult<MessageResponse>> =
                 remoteSource.register(name, email, password)
 
-            override fun mapData(data: MessageResponse): Flow<Message>  =
+            override fun mapData(data: MessageResponse): Flow<Message> =
                 flow { emit(data.mapToModel()) }
         }.asFlow()
 
     override fun login(email: String, password: String): Flow<Resource<Login>> =
-        object : BaseRepository<Login, ApiResponse<LoginResponse>>(){
+        object : BaseRepository<Login, ApiResponse<LoginResponse>>() {
             override suspend fun createCall(): Flow<ApiResult<ApiResponse<LoginResponse>>> =
                 remoteSource.login(email, password)
 
@@ -62,7 +61,7 @@ class Repository(
         }.flow.map { paging -> paging.map { it.mapToModel() } }
 
     override fun pagerResource(loadState: CombinedLoadStates): Flow<Resource<Unit>> = flow {
-        when(val result = loadState.source.refresh){
+        when (val result = loadState.source.refresh) {
             is LoadState.Loading -> emit(Resource.Loading())
             is LoadState.NotLoading -> emit(Resource.Success(Unit))
             is LoadState.Error -> {
@@ -70,7 +69,7 @@ class Repository(
                 val codeResponse = error?.get(0)
                 val message = error?.get(1)
 
-                when(codeResponse?.toInt()){
+                when (codeResponse?.toInt()) {
                     401 -> emit(Resource.Unauthorized(message.toString()))
                     500, 502 -> emit(Resource.ServerError(message.toString()))
                     else -> emit(Resource.Failed(message.toString()))
@@ -80,12 +79,12 @@ class Repository(
     }
 
     override fun checkAuth(): Flow<Resource<Boolean>> =
-        object : BaseRepository<Boolean, ApiResponse<List<StoryResponse>>>(){
+        object : BaseRepository<Boolean, ApiResponse<List<StoryResponse>>>() {
             override suspend fun createCall(): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
                 remoteSource.allStories(prefDataStore.getToken.first(), 1, 1, 0)
 
             override fun mapData(data: ApiResponse<List<StoryResponse>>): Flow<Boolean> = flow {
-                if (data.data.isNullOrEmpty()){
+                if (data.data.isNullOrEmpty()) {
                     emit(false)
                 } else {
                     emit(true)
@@ -94,7 +93,7 @@ class Repository(
 
         }.asFlow()
 
-    override fun clearAuth() = prefDataStore.clear()
+    override fun clearAuth() = prefDataStore.clearAuth()
 
     override fun getUserName(): Flow<String> = prefDataStore.getName
 
@@ -106,7 +105,7 @@ class Repository(
 
     override fun isFavorite(storyId: String): Flow<Boolean> = flow {
         val result = localSource.isFavorite(storyId).first()
-        if (result == 0){
+        if (result == 0) {
             emit(false)
         } else {
             emit(true)
@@ -115,11 +114,20 @@ class Repository(
 
     override fun setFavorite(story: Story): Flow<Boolean> = flow {
         val result = isFavorite(story.id).first()
-        if (result){
+        if (result) {
             localSource.unSetFavorite(story.id)
         } else {
             localSource.setFavorite(story.mapToEntity())
         }
         emit(!result)
     }
+
+    override fun post(file: File, description: String): Flow<Resource<Message>> =
+        object : BaseRepository<Message, MessageResponse>() {
+            override suspend fun createCall(): Flow<ApiResult<MessageResponse>> =
+                remoteSource.post(prefDataStore.getToken.first(), file, description)
+            override fun mapData(data: MessageResponse): Flow<Message> =
+                flow { emit(data.mapToModel()) }
+        }.asFlow()
+
 }

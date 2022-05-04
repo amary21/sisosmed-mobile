@@ -17,6 +17,7 @@ import com.amary.sisosmed.presentation.ui.auth.register.RegisterViewModel
 import com.amary.sisosmed.presentation.ui.main.detail.DetailViewModel
 import com.amary.sisosmed.presentation.ui.main.favorite.FavoriteViewModel
 import com.amary.sisosmed.presentation.ui.main.home.HomeViewModel
+import com.amary.sisosmed.presentation.ui.main.post.PostViewModel
 import com.amary.sisosmed.presentation.ui.main.setting.SettingViewModel
 import com.amary.sisosmed.presentation.ui.splash.SplashViewModel
 import com.chuckerteam.chucker.api.ChuckerCollector
@@ -90,4 +91,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+    viewModel { PostViewModel(get()) }
 }
