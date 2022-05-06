@@ -38,7 +38,7 @@ class LocalizationFragment: BaseBottomSheet<FragmentLocalizationBinding>(Fragmen
 
     override fun setExpandLayout() = false
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
+        binding?.apply {
             val localSelected = arguments?.getString(KeyValue.BUNDLE_LOCAL) ?: EmptyValue.DEFAULT
             adapter.selected = localSelected
 

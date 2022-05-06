@@ -21,7 +21,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
     }}
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
+        binding?.apply {
             rvFavorite.layoutManager = LinearLayoutManager(requireContext())
             rvFavorite.adapter = adapter
 

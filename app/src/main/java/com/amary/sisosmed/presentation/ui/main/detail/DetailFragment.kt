@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.amary.sisosmed.R
 import com.amary.sisosmed.base.BaseBottomSheet
+import com.amary.sisosmed.constant.EmptyValue
 import com.amary.sisosmed.constant.KeyValue
 import com.amary.sisosmed.databinding.FragmentDetailBinding
 import com.amary.sisosmed.domain.model.Story
@@ -19,7 +20,7 @@ class DetailFragment: BaseBottomSheet<FragmentDetailBinding>(FragmentDetailBindi
     override fun setExpandLayout() = true
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
+        binding?.apply {
             val story = arguments?.getSerializable(KeyValue.BUNDLE_ITEM) as Story
 
             toolbar.title = story.name
@@ -62,6 +63,6 @@ class DetailFragment: BaseBottomSheet<FragmentDetailBinding>(FragmentDetailBindi
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
         val date = parser.parse(createdAt)
         val dateFormat = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
-        return dateFormat.format(date!!)
+        return date?.let { dateFormat.format(it) } ?: EmptyValue.STRING
     }
 }

@@ -18,7 +18,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     private val viewModel: RegisterViewModel by viewModel()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
+        binding?.apply {
             playAnimation(icon)
             txtName.editText?.addTextChangedListener(this@RegisterFragment)
             txtEmail.editText?.addTextChangedListener(this@RegisterFragment)
@@ -53,7 +53,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     override fun afterTextChanged(s: Editable?) {
-        binding.apply {
+        binding?.apply {
             btnRegister.isEnabled = !txtName.isErrorEnabled && !txtEmail.isErrorEnabled && !txtPassword.isErrorEnabled &&
                     txtName.editText?.text.toString().isNotEmpty() && txtEmail.editText?.text.toString().isNotEmpty() &&
                     txtPassword.editText?.text.toString().isNotEmpty()

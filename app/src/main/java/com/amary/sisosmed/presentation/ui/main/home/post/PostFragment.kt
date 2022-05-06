@@ -40,8 +40,8 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             val myFile = File(currentPhotoPath)
             val result = rotateBitmap(BitmapFactory.decodeFile(myFile.path), true)
             viewModel.setImgBitmap(myFile)
-            binding.placeHolder.isVisible = false
-            binding.imgPreview.setImageBitmap(result)
+            binding?.placeHolder?.isVisible = false
+            binding?.imgPreview?.setImageBitmap(result)
         }
     }
 
@@ -51,8 +51,8 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             val myFile = uriToFile(selectedImg, requireActivity())
             val result = BitmapFactory.decodeFile(myFile.path)
             viewModel.setImgBitmap(myFile)
-            binding.placeHolder.isVisible = false
-            binding.imgPreview.setImageBitmap(result)
+            binding?.placeHolder?.isVisible = false
+            binding?.imgPreview?.setImageBitmap(result)
         }
     }
 
@@ -74,7 +74,7 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
             requestPermission.launch(REQUIRED_PERMISSIONS)
         }
 
-        binding.apply {
+        binding?.apply {
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
             toolbar.inflateMenu(R.menu.post_menu)
             toolbar.setOnMenuItemClickListener { menuItem ->
@@ -143,7 +143,7 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
 
     private fun checkForm(){
         viewModel.getImgBitmap().observe(viewLifecycleOwner){
-            binding.btnPost.isEnabled = !(it == null || binding.txtPost.editText?.text.toString().isEmpty())
+            binding?.btnPost?.isEnabled = !(it == null || binding?.txtPost?.editText?.text.toString().isEmpty())
             getFile = it
         }
     }
