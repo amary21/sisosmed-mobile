@@ -57,8 +57,7 @@ class Repository(
             remoteSource.allStories(
                 prefDataStore.getToken.first(),
                 page,
-                5,
-                0
+                5
             )
         }.flow.map { paging -> paging.map { it.mapToModel() } }
 
@@ -83,7 +82,7 @@ class Repository(
     override fun checkAuth(): Flow<Resource<Boolean>> =
         object : BaseRepository<Boolean, ApiResponse<List<StoryResponse>>>() {
             override suspend fun createCall(): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
-                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1, 0)
+                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1)
 
             override fun mapData(data: ApiResponse<List<StoryResponse>>): Flow<Boolean> = flow {
                 if (data.data.isNullOrEmpty()) {
