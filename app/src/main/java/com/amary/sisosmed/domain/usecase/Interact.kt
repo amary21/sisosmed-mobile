@@ -20,4 +20,5 @@ class Interact(private val iRepository: IRepository): UseCase {
     override fun allLocalization() = iRepository.allLocalization()
     override fun setLocal(local: String) = iRepository.setLocal(local)
     override fun getLocal() = iRepository.getLocal()
+    override fun getDataWithLoc() = iRepository.getDataWithLoc()
 }

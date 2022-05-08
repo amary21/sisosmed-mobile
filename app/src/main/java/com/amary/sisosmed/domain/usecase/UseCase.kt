@@ -25,4 +25,5 @@ interface UseCase {
     fun allLocalization(): Flow<List<Localization>>
     fun setLocal(local: String): Flow<String>
     fun getLocal(): Flow<String>
+    fun getDataWithLoc(): Flow<Resource<List<Story>>>
 }

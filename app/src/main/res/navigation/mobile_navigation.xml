@@ -102,4 +102,10 @@
         android:label="@string/title_localization"
         tools:layout="@layout/fragment_localization" />
 
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.amary.sisosmed.presentation.ui.main.map.MapsFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_maps" />
+
 </navigation>

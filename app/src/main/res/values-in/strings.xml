@@ -44,4 +44,6 @@
     <string name="title_sign_in_ask">Masuk?</string>
     <string name="title_sign_out">Keluar</string>
     <string name="title_splash">Splash</string>
+    <string name="title_map">Peta</string>
+    <string name="msg_maps">Temukan postingan menarik disekitarmu</string>
 </resources>

@@ -147,4 +147,15 @@ class Repository(
 
     override fun getLocal(): Flow<String> = prefDataStore.getLocal
 
+    override fun getDataWithLoc(): Flow<Resource<List<Story>>> =
+        object : BaseRepository<List<Story>, ApiResponse<List<StoryResponse>>>() {
+            override suspend fun createCall(): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
+                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1000)
+
+            override fun mapData(data: ApiResponse<List<StoryResponse>>): Flow<List<Story>> = flow {
+                emit(data.data.map { it.mapToModel() })
+            }
+
+        }.asFlow()
+
 }

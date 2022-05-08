@@ -44,4 +44,6 @@
     <string name="title_sign_in_ask">Sign in?</string>
     <string name="title_sign_out">Sign out</string>
     <string name="title_splash">Splash</string>
+    <string name="title_map">Maps</string>
+    <string name="msg_maps">Find interesting posts around you</string>
 </resources>
