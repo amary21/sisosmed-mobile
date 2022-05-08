@@ -15,10 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteBinding::inflate) {
     private val viewModel: FavoriteViewModel by viewModel()
-    private val adapter: FavoriteAdapter by lazy { FavoriteAdapter{
-        val bundle = bundleOf(KeyValue.BUNDLE_ITEM to it)
-        findNavController().navigate(R.id.action_navigation_favorite_to_navigation_detail, bundle)
-    }}
+    private val adapter: FavoriteAdapter by lazy { FavoriteAdapter()}
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding?.apply {
@@ -35,6 +32,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
                     rvFavorite.isVisible = false
                     tvNotFound.isVisible = true
                 }
+            }
+
+            adapter.setOnClickListener {
+                val bundle = bundleOf(KeyValue.BUNDLE_ITEM to it)
+                findNavController().navigate(R.id.action_navigation_favorite_to_navigation_detail, bundle)
             }
         }
     }
