@@ -57,8 +57,7 @@ class Repository(
             remoteSource.allStories(
                 prefDataStore.getToken.first(),
                 page,
-                5,
-                0
+                5
             )
         }.flow.map { paging -> paging.map { it.mapToModel() } }
 
@@ -83,7 +82,7 @@ class Repository(
     override fun checkAuth(): Flow<Resource<Boolean>> =
         object : BaseRepository<Boolean, ApiResponse<List<StoryResponse>>>() {
             override suspend fun createCall(): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
-                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1, 0)
+                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1)
 
             override fun mapData(data: ApiResponse<List<StoryResponse>>): Flow<Boolean> = flow {
                 if (data.data.isNullOrEmpty()) {
@@ -124,10 +123,10 @@ class Repository(
         emit(!result)
     }
 
-    override fun post(file: File, description: String): Flow<Resource<Message>> =
+    override fun post(file: File, description: String, lat: Float, lon: Float): Flow<Resource<Message>> =
         object : BaseRepository<Message, MessageResponse>() {
             override suspend fun createCall(): Flow<ApiResult<MessageResponse>> =
-                remoteSource.post(prefDataStore.getToken.first(), file, description)
+                remoteSource.post(prefDataStore.getToken.first(), file, description, lat, lon)
             override fun mapData(data: MessageResponse): Flow<Message> =
                 flow { emit(data.mapToModel()) }
         }.asFlow()
@@ -147,5 +146,16 @@ class Repository(
     }
 
     override fun getLocal(): Flow<String> = prefDataStore.getLocal
+
+    override fun getDataWithLoc(): Flow<Resource<List<Story>>> =
+        object : BaseRepository<List<Story>, ApiResponse<List<StoryResponse>>>() {
+            override suspend fun createCall(): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
+                remoteSource.allStories(prefDataStore.getToken.first(), 1, 1000)
+
+            override fun mapData(data: ApiResponse<List<StoryResponse>>): Flow<List<Story>> = flow {
+                emit(data.data.map { it.mapToModel() })
+            }
+
+        }.asFlow()
 
 }

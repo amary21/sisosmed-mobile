@@ -12,13 +12,15 @@
         <entry key="app/src/main/res/drawable/bg_home_content.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/bg_menu.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/bg_rounded.xml" value="0.2385" />
+        <entry key="app/src/main/res/drawable/bg_rounded_sheet.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/bg_textarea.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_create.xml" value="0.285" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1815" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.49951969260326606" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28554778554778554" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.2708333333333333" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
@@ -27,8 +29,9 @@
         <entry key="app/src/main/res/layout/fragment_home_content.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_localization.xml" value="0.31015625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.18885869565217392" />
-        <entry key="app/src/main/res/layout/fragment_post.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_post.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.40625" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.40625" />

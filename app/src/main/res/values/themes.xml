@@ -51,4 +51,5 @@
         <item name="cornerSizeTopLeft">@dimen/value_16dp</item>
         <item name="cornerSizeTopRight">@dimen/value_16dp</item>
     </style>
+
 </resources>

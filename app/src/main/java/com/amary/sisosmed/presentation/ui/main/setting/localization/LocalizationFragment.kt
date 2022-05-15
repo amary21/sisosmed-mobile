@@ -36,6 +36,10 @@ class LocalizationFragment: BaseBottomSheet<FragmentLocalizationBinding>(Fragmen
         }
     } }
 
+    override fun getTheme(): Int {
+        return R.style.BottomSheetDialogTheme
+    }
+
     override fun setExpandLayout() = false
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding?.apply {

@@ -18,6 +18,7 @@ import com.amary.sisosmed.presentation.ui.main.detail.DetailViewModel
 import com.amary.sisosmed.presentation.ui.main.favorite.FavoriteViewModel
 import com.amary.sisosmed.presentation.ui.main.home.HomeViewModel
 import com.amary.sisosmed.presentation.ui.main.home.post.PostViewModel
+import com.amary.sisosmed.presentation.ui.main.map.MapsViewModel
 import com.amary.sisosmed.presentation.ui.main.setting.SettingViewModel
 import com.amary.sisosmed.presentation.ui.main.setting.localization.LocalizationViewModel
 import com.amary.sisosmed.presentation.ui.splash.SplashViewModel
@@ -94,4 +95,5 @@ val viewModelModule = module {
     viewModel { DetailViewModel(get()) }
     viewModel { PostViewModel(get()) }
     viewModel { LocalizationViewModel(get()) }
+    viewModel { MapsViewModel(get()) }
 }
