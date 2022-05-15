@@ -30,15 +30,15 @@ class CustomTextInputLayout  : TextInputLayout {
                 override fun afterTextChanged(s: Editable) {
                     if (s.isNotEmpty()){
                         when{
-                            s.length < 6 && it.editText!!.inputType == InputType.INPUT_TYPE_PASSWORD -> {
+                            s.length < 6 && it.editText?.inputType == InputType.INPUT_TYPE_PASSWORD -> {
                                 isErrorEnabled = true
                                 error = context.getString(R.string.msg_error_pass)
                             }
-                            s.length < 3 && it.editText!!.inputType == InputType.INPUT_TYPE_PERSON_NAME -> {
+                            s.length < 3 && it.editText?.inputType == InputType.INPUT_TYPE_PERSON_NAME -> {
                                 isErrorEnabled = true
                                 error = context.getString(R.string.msg_error_name)
                             }
-                            !s.toString().lowercase(Locale.getDefault()).contains("@") && it.editText!!.inputType == InputType.INPUT_TYPE_EMAIL -> {
+                            !s.toString().lowercase(Locale.getDefault()).contains("@") && it.editText?.inputType == InputType.INPUT_TYPE_EMAIL -> {
                                 isErrorEnabled = true
                                 error = context.getString(R.string.msg_error_email)
                             }

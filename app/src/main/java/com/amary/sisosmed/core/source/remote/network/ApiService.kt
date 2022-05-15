@@ -30,7 +30,7 @@ interface ApiService {
         @Header("Authorization") auth: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
-        @Query("location") location: Int
+        @Query("location") location: Int = 1
     ): Response<ApiResponse<List<StoryResponse>>>
 
     @Multipart
@@ -39,5 +39,7 @@ interface ApiService {
         @Header("Authorization") auth: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody,
+        @Part("lon") lon: RequestBody,
     ): Response<MessageResponse>
 }

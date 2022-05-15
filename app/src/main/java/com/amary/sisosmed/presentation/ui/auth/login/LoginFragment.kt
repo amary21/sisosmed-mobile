@@ -18,8 +18,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         sharedElementEnterTransition = ChangeBounds().apply { duration = 750 }
-        playAnimation(binding.icon)
-        binding.apply {
+        binding?.apply {
+            playAnimation(icon)
             findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("isFromRegister")
                 ?.observe(viewLifecycleOwner){
                     if (it){
@@ -68,7 +68,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
     override fun afterTextChanged(s: Editable?) {
-        binding.apply {
+        binding?.apply {
             btnLogin.isEnabled =
                 !txtEmail.isErrorEnabled && !txtPassword.isErrorEnabled && txtEmail.editText?.text.toString()
                     .isNotEmpty() && txtPassword.editText?.text.toString().isNotEmpty()

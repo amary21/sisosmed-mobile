@@ -17,7 +17,7 @@ abstract class BaseBottomSheet<VB: ViewBinding>(
     private val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : BottomSheetDialogFragment() {
     private var _binding : VB? = null
-    protected val binding get() = _binding!!
+    protected val binding get() = _binding
     protected val progressDialog: ProgressDialog by lazy { ProgressDialog(requireContext()) }
     protected val snackBar: SnackBarCustom by lazy { SnackBarCustom(requireActivity()) }
 
@@ -45,7 +45,7 @@ abstract class BaseBottomSheet<VB: ViewBinding>(
         savedInstanceState: Bundle?,
     ): View? {
         _binding = bindingInflater.invoke(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     abstract fun initView(view: View, savedInstanceState: Bundle?)

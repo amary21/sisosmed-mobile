@@ -16,7 +16,7 @@ abstract class BaseRemoteSource(private val dispatcher: CoroutineDispatcher) {
         try {
             val responseCall = call()
             if (responseCall.isSuccessful && responseCall.body() != null){
-                emit(ApiResult.Success(responseCall.body()!!))
+                responseCall.body()?.let { emit(ApiResult.Success(it)) }
             } else {
                 val responseError = Gson().fromJson(responseCall.errorBody()?.charStream(), MessageResponse::class.java)
                 emit(ApiResult.Error(responseCall.code(), responseError.message))

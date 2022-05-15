@@ -16,7 +16,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     private val viewModel: SettingViewModel by viewModel()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
+        binding?.apply {
             viewModel.getLocal.observe(viewLifecycleOwner){ local ->
                 viewModel.allLocal.observe(viewLifecycleOwner){ locals ->
                     locals.forEach { result ->

@@ -26,13 +26,15 @@ class RemoteSource(
     suspend fun login(email: String, password: String): Flow<ApiResult<ApiResponse<LoginResponse>>> =
         getResult { apiService.login(email, password) }
 
-    suspend fun allStories(token: String, page: Int, size: Int, location: Int): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
-        getResult { apiService.allStories("Bearer $token", page, size, location) }
+    suspend fun allStories(token: String, page: Int, size: Int): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
+        getResult { apiService.allStories("Bearer $token", page, size) }
 
-    suspend fun post(token: String, file: File, description: String): Flow<ApiResult<MessageResponse>> {
+    suspend fun post(token: String, file: File, description: String, lat: Float, lon: Float): Flow<ApiResult<MessageResponse>> {
         val partDes = description.toRequestBody("text/plain".toMediaType())
+        val partLat = lat.toString().toRequestBody("text/plain".toMediaType())
+        val partLon = lon.toString().toRequestBody("text/plain".toMediaType())
         val reqFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val partImage = MultipartBody.Part.createFormData("photo", file.name, reqFile)
-        return getResult { apiService.post("Bearer $token", partImage, partDes) }
+        return getResult { apiService.post("Bearer $token", partImage, partDes, partLat, partLon) }
     }
 }
