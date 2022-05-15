@@ -123,10 +123,10 @@ class Repository(
         emit(!result)
     }
 
-    override fun post(file: File, description: String): Flow<Resource<Message>> =
+    override fun post(file: File, description: String, lat: Float, lon: Float): Flow<Resource<Message>> =
         object : BaseRepository<Message, MessageResponse>() {
             override suspend fun createCall(): Flow<ApiResult<MessageResponse>> =
-                remoteSource.post(prefDataStore.getToken.first(), file, description)
+                remoteSource.post(prefDataStore.getToken.first(), file, description, lat, lon)
             override fun mapData(data: MessageResponse): Flow<Message> =
                 flow { emit(data.mapToModel()) }
         }.asFlow()

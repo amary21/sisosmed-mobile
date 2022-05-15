@@ -46,4 +46,5 @@
     <string name="title_splash">Splash</string>
     <string name="title_map">Maps</string>
     <string name="msg_maps">Find interesting posts around you</string>
+    <string name="title_current_location">Current Location</string>
 </resources>

@@ -9,51 +9,33 @@ import androidx.core.app.ActivityCompat
 import com.amary.sisosmed.base.BaseFragment
 import com.amary.sisosmed.core.Resource
 import com.amary.sisosmed.databinding.FragmentMapsBinding
+import com.amary.sisosmed.presentation.util.setMapStyle
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MapsFragment : BaseFragment<FragmentMapsBinding>(FragmentMapsBinding::inflate) {
+class MapsFragment : BaseFragment<FragmentMapsBinding>(FragmentMapsBinding::inflate), OnMapReadyCallback {
+    private lateinit var mMap: GoogleMap
     private val viewModel: MapsViewModel by viewModel()
-    private fun requestPermissionLauncher(mMap: GoogleMap) = registerForActivityResult(ActivityResultContracts.RequestPermission()){
-        if (it){
-            getMyLocation(mMap)
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                getMyLocation()
+            }
         }
-    }
-
-    private fun getMyLocation(mMap: GoogleMap) {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissionLauncher(mMap).launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        } else {
-            mMap.isMyLocationEnabled = true
-        }
-    }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         binding?.apply {
             mapView.onCreate(savedInstanceState)
             mapView.onResume()
             MapsInitializer.initialize(requireActivity().applicationContext)
-            mapView.getMapAsync { mMap ->
-                mMap.uiSettings.isZoomControlsEnabled = true
-                mMap.uiSettings.isIndoorLevelPickerEnabled = true
-                mMap.uiSettings.isCompassEnabled = true
-                mMap.uiSettings.isMapToolbarEnabled = true
-
-                getObserveData(mMap)
-                getMyLocation(mMap)
-            }
+            mapView.getMapAsync(this@MapsFragment)
         }
     }
 
@@ -67,14 +49,53 @@ class MapsFragment : BaseFragment<FragmentMapsBinding>(FragmentMapsBinding::infl
                                 .position(LatLng(story.lat, story.lon))
                                 .title(story.name)
                                 .snippet(story.description)
-
                         )
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(story.lat, story.lon), 15f))
                     }
                 }
                 else -> {}
             }
         }
+    }
+
+    private fun getMyLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        } else {
+            mMap.isMyLocationEnabled = true
+            val fused = LocationServices.getFusedLocationProviderClient(requireContext())
+            fused.lastLocation.addOnSuccessListener {
+                if (it != null) {
+                    mMap.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                it.latitude,
+                                it.longitude
+                            ), 8f
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
+
+        getObserveData(mMap)
+        getMyLocation()
+        setMapStyle(requireContext(), mMap)
     }
 
     override fun onResume() {

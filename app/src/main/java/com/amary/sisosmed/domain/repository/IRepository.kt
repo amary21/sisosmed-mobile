@@ -21,7 +21,7 @@ interface IRepository {
     fun allFavoriteStories(): Flow<List<Story>>
     fun isFavorite(storyId: String): Flow<Boolean>
     fun setFavorite(story: Story): Flow<Boolean>
-    fun post(file: File, description: String): Flow<Resource<Message>>
+    fun post(file: File, description: String, lat: Float, lon: Float): Flow<Resource<Message>>
     fun allLocalization(): Flow<List<Localization>>
     fun setLocal(local: String): Flow<String>
     fun getLocal(): Flow<String>
