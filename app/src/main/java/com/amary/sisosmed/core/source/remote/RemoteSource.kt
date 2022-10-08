@@ -2,7 +2,8 @@ package com.amary.sisosmed.core.source.remote
 
 import com.amary.sisosmed.base.BaseRemoteSource
 import com.amary.sisosmed.core.source.remote.network.ApiResult
-import com.amary.sisosmed.core.source.remote.network.ApiService
+import com.amary.sisosmed.core.source.remote.network.ktor.KtorService
+import com.amary.sisosmed.core.source.remote.network.retrofit.RetrofitService
 import com.amary.sisosmed.core.source.remote.response.ApiResponse
 import com.amary.sisosmed.core.source.remote.response.LoginResponse
 import com.amary.sisosmed.core.source.remote.response.MessageResponse
@@ -17,17 +18,18 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class RemoteSource(
-    private val apiService: ApiService,
+    private val retrofitService: RetrofitService,
+    private val ktorService: KtorService,
     dispatcher: CoroutineDispatcher
 ) : BaseRemoteSource(dispatcher) {
     suspend fun register(name: String, email: String, password: String) : Flow<ApiResult<MessageResponse>> =
-        getResult { apiService.register(name, email, password) }
+        getResult({retrofitService.register(name, email, password)}, {ktorService.register(name, email, password)})
 
     suspend fun login(email: String, password: String): Flow<ApiResult<ApiResponse<LoginResponse>>> =
-        getResult { apiService.login(email, password) }
+        getResult( { retrofitService.login(email, password) }, { ktorService.login(email, password) })
 
     suspend fun allStories(token: String, page: Int, size: Int): Flow<ApiResult<ApiResponse<List<StoryResponse>>>> =
-        getResult { apiService.allStories("Bearer $token", page, size) }
+        getResult ({ retrofitService.allStories("Bearer $token", page, size) }, {ktorService.allStories("Bearer $token", page, size)})
 
     suspend fun post(token: String, file: File, description: String, lat: Float, lon: Float): Flow<ApiResult<MessageResponse>> {
         val partDes = description.toRequestBody("text/plain".toMediaType())
@@ -35,6 +37,6 @@ class RemoteSource(
         val partLon = lon.toString().toRequestBody("text/plain".toMediaType())
         val reqFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val partImage = MultipartBody.Part.createFormData("photo", file.name, reqFile)
-        return getResult { apiService.post("Bearer $token", partImage, partDes, partLat, partLon) }
+        return getResult({ retrofitService.post("Bearer $token", partImage, partDes, partLat, partLon) }, {ktorService.post("Bearer $token", file, description, lat.toString(), lon.toString())})
     }
 }
