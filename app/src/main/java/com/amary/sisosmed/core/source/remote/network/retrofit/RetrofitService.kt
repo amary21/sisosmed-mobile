@@ -1,4 +1,4 @@
-package com.amary.sisosmed.core.source.remote.network
+package com.amary.sisosmed.core.source.remote.network.retrofit
 
 import com.amary.sisosmed.core.source.remote.response.ApiResponse
 import com.amary.sisosmed.core.source.remote.response.LoginResponse
@@ -9,7 +9,7 @@ import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
-interface ApiService {
+interface RetrofitService {
     @FormUrlEncoded
     @POST("register")
     suspend fun register(

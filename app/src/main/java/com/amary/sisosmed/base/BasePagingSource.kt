@@ -24,11 +24,16 @@ open class BasePagingSource<T: Any>(
         return try {
             when(val result = remoteSource(page).first()){
                 is ApiResult.Success -> {
-                    LoadResult.Page(
-                        data = result.data.data,
-                        prevKey = if (page == 1) null else page - 1,
-                        nextKey = page + 1
-                    )
+                    if (result.data.data.isNotEmpty()){
+                        LoadResult.Page(
+                            data = result.data.data,
+                            prevKey = if (page == 1) null else page - 1,
+                            nextKey = page + 1
+                        )
+                    } else {
+                        val responseBody = "400 - data is empty"
+                        throw Exception(responseBody)
+                    }
                 }
                 is ApiResult.Error -> {
                     val responseBody = "${result.codeError} - ${result.errorMessage}"
