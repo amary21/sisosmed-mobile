@@ -1,10 +1,10 @@
 package com.amary.sisosmed.base
 
-import android.util.Log
 import com.amary.sisosmed.constant.KeyValue.IS_ACTIVATE_KTOR
 import com.amary.sisosmed.core.source.remote.network.ApiResult
 import com.amary.sisosmed.core.source.remote.response.MessageResponse
 import com.google.gson.Gson
+import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -36,14 +36,10 @@ abstract class BaseRemoteSource(private val dispatcher: CoroutineDispatcher) {
 
     private suspend fun <T> getKtorResult(call: suspend () -> T) : Flow<ApiResult<T>> = flow {
         try {
-            Log.e("getKtorResult", "RESPONSE: SUCCESS")
             emit(ApiResult.Success(call()))
         } catch(e: ClientRequestException) {
-            // 4xx - responses
-            emit(ApiResult.Error(e.response.status.value, e.response.status.description))
-            println("Error: ${e.response.status.description}")
+            emit(ApiResult.Error(e.response.status.value, e.response.body<MessageResponse>().message))
         } catch(e: ServerResponseException) {
-            // 5xx - responses
             emit(ApiResult.Error(e.response.status.value, e.response.status.description))
         } catch(e: Exception) {
             emit(ApiResult.Error(400, e.message.toString()))

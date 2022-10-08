@@ -24,9 +24,8 @@ object KtorConfig {
 
     fun build(context: Context): HttpClient {
         return HttpClient(OkHttp){
-            install(ContentNegotiation){
-                gson()
-            }
+            expectSuccess = true
+            install(ContentNegotiation){ gson() }
             engine {
                 config {
                     addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -35,9 +34,6 @@ object KtorConfig {
                     readTimeout(KeyValue.TIME_NETWORK, TimeUnit.SECONDS)
                     build()
                 }
-
-                addInterceptor(chucker(context))
-                addNetworkInterceptor(chucker(context))
             }
         }
     }
