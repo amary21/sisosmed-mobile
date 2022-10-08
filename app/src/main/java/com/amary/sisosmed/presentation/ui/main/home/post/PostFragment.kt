@@ -63,13 +63,13 @@ class PostFragment: BaseBottomSheet<FragmentPostBinding>(FragmentPostBinding::in
 
     private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permission ->
         permission.entries.forEach {
-            if (it.key == Manifest.permission.CAMERA && it.value == true){
+            if (it.key == Manifest.permission.CAMERA && it.value){
                 Toast.makeText(requireContext(), getString(R.string.msg_camera_granted), Toast.LENGTH_SHORT).show()
-            } else if (it.key == Manifest.permission.CAMERA && it.value == false) {
+            } else if (it.key == Manifest.permission.CAMERA && !it.value) {
                 Toast.makeText(requireContext(), getString(R.string.msg_camera_denied), Toast.LENGTH_SHORT).show()
             }
 
-            if(it.key == Manifest.permission.ACCESS_FINE_LOCATION && it.value == true){
+            if(it.key == Manifest.permission.ACCESS_FINE_LOCATION && it.value){
                 getMyLocation()
             }
         }

@@ -21,7 +21,7 @@ class KtorServiceImpl(private val client: HttpClient): KtorService {
             formParameters = Parameters.build {
                 append("name", name)
                 append("email", email)
-                append("password", email)
+                append("password", password)
             }
         ).body()
     }
@@ -31,7 +31,7 @@ class KtorServiceImpl(private val client: HttpClient): KtorService {
             url = BuildConfig.BASE_URL + "login",
             formParameters = Parameters.build {
                 append("email", email)
-                append("password", email)
+                append("password", password)
             }
         ).body()
     }
@@ -71,7 +71,6 @@ class KtorServiceImpl(private val client: HttpClient): KtorService {
                         append(HttpHeaders.ContentDisposition, "filename=\"${file.name}\"")
                     })
                 },
-                boundary = "WebAppBoundary"
             )
             )
             onUpload { bytesSentTotal, contentLength ->
